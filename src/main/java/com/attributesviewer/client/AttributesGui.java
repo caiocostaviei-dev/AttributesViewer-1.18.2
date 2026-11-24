@@ -25,7 +25,6 @@ import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.locale.Language;
-import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.network.chat.MutableComponent;
@@ -252,7 +251,7 @@ public class AttributesGui {
         Component valueComp = AttributeFormatter.toValueComponent(attr, null, inst.getValue()).withStyle(color);
         Component baseComp = AttributeFormatter.toValueComponent(attr, null, inst.getBaseValue()).withStyle(ChatFormatting.GRAY);
 
-        list.add(CommonComponents.EMPTY);
+        list.add(TextComponent.EMPTY);
         list.add(new TranslatableComponent("attributesviewer.gui.current", valueComp).withStyle(ChatFormatting.GRAY));
 
         Component base = new TranslatableComponent("attributesviewer.gui.base", baseComp).withStyle(ChatFormatting.GRAY);
@@ -274,7 +273,7 @@ public class AttributesGui {
         }
 
         if (inst.getModifiers().stream().anyMatch(modif -> modif.getAmount() != 0)) {
-            this.addComp(CommonComponents.EMPTY, finalTooltip);
+            this.addComp(TextComponent.EMPTY, finalTooltip);
             this.addComp(new TranslatableComponent("attributesviewer.gui.modifiers").withStyle(ChatFormatting.GOLD), finalTooltip);
 
             Map<UUID, ModifierSource<?>> modifiersToSources = new HashMap<>();
@@ -300,7 +299,7 @@ public class AttributesGui {
                 numericValues[op.ordinal()] = opValue;
             }
 
-            this.addComp(CommonComponents.EMPTY, finalTooltip);
+            this.addComp(TextComponent.EMPTY, finalTooltip);
             this.addComp(new TextComponent("Modifier Formula").withStyle(ChatFormatting.GOLD), finalTooltip);
 
             this.addComp(buildFormula(valueComp, baseComp, numericValues), finalTooltip);
@@ -314,7 +313,7 @@ public class AttributesGui {
     }
 
     private void addComp(Component comp, List<TipLine> finalTooltip) {
-        if (comp == CommonComponents.EMPTY) {
+        if (comp == TextComponent.EMPTY) {
             finalTooltip.add(new TipLine(FormattedCharSequence.EMPTY, null, false, false));
         }
         else {
